@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yoko_test/main/domain/blocs/authorization/authorization_bloc.dart';
 import 'package:yoko_test/main/presentation/screens/authorization/login_screen.dart';
 
 void main() async {
@@ -22,7 +24,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: BlocProvider<AuthorizationBloc>(
+        create: (_) => AuthorizationBloc(),
+        child: const LoginScreen(),
+      ),
     );
   }
 }

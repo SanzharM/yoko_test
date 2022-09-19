@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yoko_test/core/constants/constants.dart';
+import 'package:yoko_test/core/services/alert_controller.dart';
+import 'package:yoko_test/main/domain/blocs/authorization/authorization_bloc.dart';
+import 'package:yoko_test/main/presentation/app_router.dart';
 import 'package:yoko_test/main/presentation/widgets/app_text_field.dart';
 import 'package:yoko_test/main/presentation/widgets/buttons/app_button.dart';
 import 'package:yoko_test/main/presentation/widgets/buttons/app_icon_button.dart';
@@ -14,9 +18,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscured = true;
+  late AuthorizationBloc bloc;
+
+  String? _login;
+  String? _password;
+
   @override
   void initState() {
     super.initState();
+    bloc = context.read<AuthorizationBloc>();
   }
 
   @override
@@ -56,14 +66,14 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: AppConstraints.padding * 2),
               AppTextField(
                 hintText: 'E-mail',
-                text: '',
+                text: _login,
                 onTap: () => setState(() {}),
-                onChanged: (value) {},
+                onChanged: (value) => setState(() => _login = value),
               ),
               const SizedBox(height: AppConstraints.padding),
               AppTextField(
                 hintText: 'Пароль',
-                text: '',
+                text: _password,
                 maxLines: 1,
                 isObscured: isObscured,
                 icon: AppIconButton(
@@ -73,11 +83,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onPressed: () => setState(() => isObscured = !isObscured),
                 ),
+                onChanged: (value) => setState(() => _password = value),
               ),
               const SizedBox(height: AppConstraints.padding * 2),
-              AppButton(
-                title: 'Войти',
-                onPressed: () {},
+              BlocConsumer<AuthorizationBloc, AuthorizationState>(
+                bloc: bloc,
+                listener: (context, state) {
+                  if (state is LoginErrorState) {
+                    AlertController.showMessage(context: context, title: 'Ошибка', content: state.error);
+                  }
+                  if (state is LoginSuccessState) {
+                    AppRouter.toMainScreen(context);
+                  }
+                },
+                builder: (context, state) {
+                  final isLoading = state is LoginLoadingState;
+                  return AppButton(
+                    title: 'Войти',
+                    isLoading: isLoading,
+                    onPressed: () {
+                      if (isLoading) return;
+                      bloc.login(_login, _password);
+                    },
+                  );
+                },
               ),
             ],
           ),
