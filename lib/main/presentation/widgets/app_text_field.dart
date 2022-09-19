@@ -60,37 +60,60 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      onChanged: widget.onChanged,
-      onTap: widget.onTap,
-      onEditingComplete: widget.onEditingComplete ?? () => FocusScope.of(context).nextFocus(),
-      keyboardType: widget.inputType,
-      maxLength: widget.maxLength ?? 300,
-      maxLines: widget.maxLines,
-      obscureText: widget.isObscured,
-      readOnly: widget.readonly,
-      validator: widget.needValidator ? _textValidator : null,
-      style: Theme.of(context).textTheme.bodyMedium?.copyWith(decoration: TextDecoration.none, color: AppColors.white),
-      decoration: InputDecoration(
-        labelText: widget.label,
-        labelStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
-        floatingLabelStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
-        floatingLabelAlignment: FloatingLabelAlignment.start,
-        hintText: widget.hintText,
-        hintStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
-        border: InputBorder.none,
-        focusColor: AppColors.white,
-        focusedErrorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        counterText: '',
-        errorBorder: InputBorder.none,
-        prefix: widget.prefix,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.icon,
-      ),
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          decoration: BoxDecoration(
+            borderRadius: AppConstraints.borderRadius,
+            border: Border.all(
+              color: AppColors.white.withOpacity(0.4),
+              width: 1.0,
+            ),
+          ),
+          child: TextFormField(
+            controller: controller,
+            onChanged: widget.onChanged,
+            onTap: widget.onTap,
+            onEditingComplete: widget.onEditingComplete ?? () => FocusScope.of(context).nextFocus(),
+            keyboardType: widget.inputType,
+            maxLength: widget.maxLength ?? 300,
+            maxLines: widget.maxLines,
+            obscureText: widget.isObscured,
+            readOnly: widget.readonly,
+            validator: widget.needValidator ? _textValidator : null,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(decoration: TextDecoration.none, color: AppColors.white),
+            decoration: InputDecoration(
+              labelText: widget.label,
+              labelStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
+              floatingLabelStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
+              floatingLabelAlignment: FloatingLabelAlignment.start,
+              hintText: widget.hintText,
+              hintStyle: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.5)),
+              border: InputBorder.none,
+              focusColor: AppColors.white,
+              focusedErrorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              counterText: '',
+              errorBorder: InputBorder.none,
+              prefix: widget.prefix,
+              prefixIcon: widget.prefixIcon,
+              fillColor: AppColors.secondary,
+            ),
+          ),
+        ),
+        if (widget.icon != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: widget.icon!,
+            ),
+          ),
+      ],
     );
   }
 

@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return GestureDetector(
       onTap: FocusScope.of(context).hasFocus ? () => FocusScope.of(context).unfocus() : null,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           padding: const EdgeInsets.all(AppConstraints.padding),
           width: double.maxFinite,
@@ -45,9 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: AppBar().preferredSize.height),
-              Text(
-                'Добро пожаловать,\nАвторизуйтесь',
-                style: Theme.of(context).textTheme.headlineMedium?.apply(color: AppColors.white),
+              Padding(
+                padding: const EdgeInsets.only(right: AppConstraints.padding * 2),
+                child: Text(
+                  'Добро пожаловать,\nАвторизуйтесь',
+                  style: Theme.of(context).textTheme.headlineMedium?.apply(color: AppColors.white),
+                ),
               ),
               const SizedBox(height: AppConstraints.padding * 2),
               AppTextField(
