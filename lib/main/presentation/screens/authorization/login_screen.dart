@@ -5,6 +5,7 @@ import 'package:yoko_test/core/constants/constants.dart';
 import 'package:yoko_test/core/services/alert_controller.dart';
 import 'package:yoko_test/main/domain/blocs/authorization/authorization_bloc.dart';
 import 'package:yoko_test/main/presentation/app_router.dart';
+import 'package:yoko_test/main/presentation/screens/authorization/login_footer.dart';
 import 'package:yoko_test/main/presentation/widgets/app_text_field.dart';
 import 'package:yoko_test/main/presentation/widgets/buttons/app_button.dart';
 import 'package:yoko_test/main/presentation/widgets/buttons/app_icon_button.dart';
@@ -39,17 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(AppConstraints.padding),
           width: double.maxFinite,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              stops: [0.1, 0.15, 0.2, 1.0],
-              colors: [
-                AppColors.blueGradient1,
-                AppColors.blueGradient2,
-                AppColors.blueGradient3,
-                AppColors.blueGradient4,
-              ],
-            ),
+            gradient: AppColors.blueLinearGradient,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -98,9 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 builder: (context, state) {
                   final isLoading = state is LoginLoadingState;
+                  final hasOpacity = (_login?.isEmpty ?? true) || (_password?.isEmpty ?? true);
                   return AppButton(
                     title: 'Войти',
                     isLoading: isLoading,
+                    backgroundColor: AppColors.white.withOpacity(hasOpacity ? 0.1 : 0.95),
+                    textColor: hasOpacity ? AppColors.white : AppColors.blueGradient4,
                     onPressed: () {
                       if (isLoading) return;
                       bloc.login(_login, _password);
@@ -108,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
               ),
+              const LoginFooter(),
             ],
           ),
         ),

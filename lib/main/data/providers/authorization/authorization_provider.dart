@@ -8,14 +8,14 @@ import 'package:yoko_test/main/data/providers/authorization/authorization_respon
 class AuthorizationProvider extends AppProvider {
   Future<LoginResponse> login(String login, String password) async {
     final response = await api.request(
-      route: Uri.https(ApiEndpoints.host, ApiEndpoints.login),
+      route: Uri.parse(ApiEndpoints.host + ApiEndpoints.login),
       method: Method.post,
-      params: {'email': login, 'password': password},
+      params: jsonEncode({"email": login, "password": password}),
     );
 
     if (response.isSuccess && (response.response?.body.isNotEmpty ?? false)) {
       final rawData = jsonDecode(response.response!.body);
-      await storage.setAccessToken(rawData['token']);
+      await storage.setAccessToken(rawData['accessToken']);
     }
 
     return LoginResponse(

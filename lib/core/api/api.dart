@@ -12,7 +12,7 @@ import 'api_response.dart';
 enum Method { get, post, put, delete }
 
 class Api {
-  static final Map<String, String> _headers = {}; // 'Content-type': 'application/json'
+  static final Map<String, String> _headers = {'Content-type': 'application/json'};
 
   static Future<bool> _checkInternetConnection() async {
     final result = await Connectivity().checkConnectivity();
@@ -25,7 +25,7 @@ class Api {
   Future<ApiResponse> request({
     required Uri route,
     required Method method,
-    Map<String, dynamic>? params,
+    dynamic params,
     bool needToken = false,
     Duration timeout = const Duration(seconds: 15),
   }) async {
