@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class AppStyles {
-  static const fontFamily = 'Ubuntu';
+  static const fontFamily = 'Lato';
 
   static const headlineLarge = TextStyle(fontSize: 28, fontWeight: FontWeight.w800, fontFamily: fontFamily);
   static const headlineMedium = TextStyle(fontSize: 26, fontWeight: FontWeight.w700, fontFamily: fontFamily);

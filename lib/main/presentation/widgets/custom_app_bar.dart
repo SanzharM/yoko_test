@@ -14,6 +14,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     this.needLeading = true,
     this.actions,
     this.overlayStyle,
+    this.titleStyle,
   }) : super(key: key);
 
   final String? title;
@@ -23,16 +24,15 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final List<Widget>? actions;
   final SystemUiOverlayStyle? overlayStyle;
+  final TextStyle? titleStyle;
 
   @override
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      elevation: 0,
       title: (title?.isNotEmpty ?? false)
           ? Text(
               title!,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: titleStyle ?? Theme.of(context).textTheme.bodyLarge,
             )
           : null,
       centerTitle: centerTitle,

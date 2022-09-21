@@ -6,6 +6,7 @@ import 'package:yoko_test/main/domain/blocs/activity/activity_bloc.dart';
 import 'package:yoko_test/main/domain/blocs/authorization/authorization_bloc.dart';
 import 'package:yoko_test/main/presentation/screens/activities/activities_screen.dart';
 import 'package:yoko_test/main/presentation/screens/authorization/login_screen.dart';
+import 'package:yoko_test/main/presentation/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Yoko test',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: AppTheme().defaultTheme,
       home: screen,
     );
   }

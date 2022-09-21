@@ -13,14 +13,29 @@ class LoginFooter extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(child: const Text('Регистрация')),
-              GestureDetector(child: const Text('Забыли пароль?')),
+              GestureDetector(
+                onTap: () {},
+                child: Text(
+                  'Регистрация',
+                  style: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Text(
+                  'Забыли пароль?',
+                  style: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white.withOpacity(0.35)),
+                ),
+              ),
             ],
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(AppConstraints.padding),
-          child: Text('Или войдите через:'),
+        Padding(
+          padding: const EdgeInsets.all(AppConstraints.padding),
+          child: Text(
+            'Или войдите через:',
+            style: Theme.of(context).textTheme.bodyMedium?.apply(color: AppColors.white),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,12 +46,12 @@ class LoginFooter extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(AppConstraints.padding / 2),
               decoration: BoxDecoration(
-                border: Border.all(),
+                border: Border.all(color: AppColors.white),
                 borderRadius: AppConstraints.borderRadius,
               ),
-              child: Text(
+              child: const Text(
                 'G',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: AppColors.white),
               ),
             ),
             const SizedBox(width: AppConstraints.padding),
@@ -46,12 +61,13 @@ class LoginFooter extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(AppConstraints.padding / 2),
               decoration: BoxDecoration(
-                border: Border.all(),
+                border: Border.all(color: AppColors.white),
                 borderRadius: AppConstraints.borderRadius,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.facebook_rounded,
                 size: 24.0,
+                color: AppColors.white,
               ),
             ),
           ],

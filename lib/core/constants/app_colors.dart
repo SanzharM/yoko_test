@@ -20,10 +20,22 @@ class AppColors {
   static const blueGradient2 = Color(0xff5C91DE);
   static const blueGradient3 = Color(0xff5A8FDB);
   static const blueGradient4 = Color(0xff4271B5);
+
+  // Gradients
   static const blueLinearGradient = LinearGradient(
     begin: Alignment.topRight,
     end: Alignment.bottomLeft,
     stops: [0.1, 0.15, 0.2, 1.0],
     colors: [AppColors.blueGradient1, AppColors.blueGradient2, AppColors.blueGradient3, AppColors.blueGradient4],
+  );
+  static final blackBlueGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: const [0.25, 0.75, 1.0],
+    colors: [
+      AppColors.black.withOpacity(0.7),
+      AppColors.transparent,
+      AppColors.blueGradient1.withOpacity(0.7),
+    ],
   );
 }

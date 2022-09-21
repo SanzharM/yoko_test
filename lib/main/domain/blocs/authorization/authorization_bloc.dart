@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
 import 'package:yoko_test/main/data/providers/authorization/authorization_provider.dart';
 
 part 'authorization_event.dart';

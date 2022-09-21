@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yoko_test/core/constants/app_contraints.dart';
+import 'package:yoko_test/core/constants/constants.dart';
 import 'package:yoko_test/main/domain/blocs/activity/activity_bloc.dart';
 import 'package:yoko_test/main/domain/models/activity.dart';
 import 'package:yoko_test/main/presentation/screens/activities/activity_card.dart';
@@ -32,23 +33,31 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Активности'),
+      appBar: const CustomAppBar(
+        title: 'Активности',
+      ),
       body: BlocConsumer<ActivityBloc, ActivityState>(
         bloc: bloc,
         listener: (_, state) {
-          print('state is $state');
+          debugPrint('state is $state');
         },
         builder: (_, state) {
           return CustomShimmer(
             isLoading: state is ActivitiesLoadingState,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.all(AppConstraints.padding),
-              shrinkWrap: true,
-              itemCount: state is ActivitiesLoadedState ? state.activities.length : 3,
-              separatorBuilder: (_, sep) => const SizedBox(height: AppConstraints.padding),
-              itemBuilder: (_, i) => ActivityCard(
-                activity: state is ActivitiesLoadedState ? state.activities[i] : const Activity(),
+            child: RefreshIndicator(
+              color: AppColors.blueGradient1,
+              onRefresh: () async => bloc.getActivities(),
+              child: CupertinoScrollbar(
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(AppConstraints.padding),
+                  shrinkWrap: true,
+                  itemCount: state is ActivitiesLoadedState ? state.activities.length : 3,
+                  separatorBuilder: (_, sep) => const SizedBox(height: AppConstraints.padding),
+                  itemBuilder: (_, i) => ActivityCard(
+                    activity: state is ActivitiesLoadedState ? state.activities[i] : const Activity(),
+                  ),
+                ),
               ),
             ),
           );
