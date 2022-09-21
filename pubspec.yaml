@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   # State management
   flutter_bloc: 
 
@@ -20,6 +21,9 @@ dependencies:
 
   # Local storage
   flutter_secure_storage: 
+
+  # Services
+  intl:
 
   # UI
   shimmer:

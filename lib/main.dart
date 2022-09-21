@@ -18,8 +18,7 @@ void main() async {
     child: const LoginScreen(),
   );
 
-  final storage = LocalStorage();
-  if (await storage.getAccessToken() != null) {
+  if (await LocalStorage().getAccessToken() != null) {
     screen = BlocProvider<ActivityBloc>(
       create: (_) => ActivityBloc(),
       child: const ActivitiesScreen(),

@@ -98,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (isLoading) return;
                       bloc.login(_login, _password);
+                      FocusScope.of(context).unfocus();
                     },
                   );
                 },

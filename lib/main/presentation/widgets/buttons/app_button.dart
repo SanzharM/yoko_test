@@ -34,15 +34,23 @@ class AppButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
-        child: Container(
-          width: double.maxFinite,
-          alignment: alignment ?? Alignment.center,
-          padding: padding ?? const EdgeInsets.all(AppConstraints.padding),
-          child: Text(
-            title,
-            style: textStyle ?? Theme.of(context).textTheme.bodyLarge?.apply(color: textColor ?? AppColors.white),
-          ),
-        ),
+        child: isLoading
+            ? Center(
+                child: Padding(
+                padding: padding ?? const EdgeInsets.all(14.0),
+                child: CupertinoActivityIndicator(
+                  color: textColor ?? AppColors.white,
+                ),
+              ))
+            : Container(
+                width: double.maxFinite,
+                alignment: alignment ?? Alignment.center,
+                padding: padding ?? const EdgeInsets.all(AppConstraints.padding),
+                child: Text(
+                  title,
+                  style: textStyle ?? Theme.of(context).textTheme.bodyLarge?.apply(color: textColor ?? AppColors.white),
+                ),
+              ),
       ),
     );
   }
