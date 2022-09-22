@@ -2,8 +2,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LocalStorage {
   final _storage = const FlutterSecureStorage();
-  static const _accessTokenKey = 'CodeUnionAccessTokenKey';
-  static const _refreshTokenKey = 'CodeUnionRefreshTokenKey';
+  static const _accessTokenKey = 'AccessTokenKey';
+  static const _refreshTokenKey = 'RefreshTokenKey';
 
   FlutterSecureStorage get storage => _storage;
 

@@ -15,7 +15,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
   final _provider = AuthorizationProvider();
 
   void _login(LoginEvent event, Emitter<AuthorizationState> emit) async {
-    final error = isValid(event);
+    final error = isEmailValid(event);
     if (error != null) {
       return emit(LoginErrorState(error));
     }
@@ -33,7 +33,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvent, AuthorizationState> {
     }
   }
 
-  String? isValid(LoginEvent event) {
+  String? isEmailValid(LoginEvent event) {
     if (event.login?.isEmpty ?? true) {
       return 'Заполните E-mail';
     }
