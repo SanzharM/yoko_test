@@ -150,9 +150,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                           ),
                       padding: const EdgeInsets.symmetric(vertical: AppConstraints.padding),
                       icon: const Icon(CupertinoIcons.forward, color: AppColors.blueGradient1),
-                      onPressed: () async {
-                        await launch('tel:77011234567');
-                      },
+                      // ignore: deprecated_member_use
+                      onPressed: () async => await launch('tel:77011234567'),
                     ),
                   ],
                 ),
