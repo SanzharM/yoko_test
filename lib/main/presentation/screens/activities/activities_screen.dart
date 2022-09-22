@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yoko_test/core/constants/constants.dart';
+import 'package:yoko_test/core/services/alert_controller.dart';
 import 'package:yoko_test/main/domain/blocs/activity/activity_bloc.dart';
 import 'package:yoko_test/main/domain/models/activity.dart';
 import 'package:yoko_test/main/presentation/screens/activities/activity_card.dart';
@@ -39,9 +40,22 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
       body: BlocConsumer<ActivityBloc, ActivityState>(
         bloc: bloc,
         listener: (_, state) {
-          debugPrint('state is $state');
+          if (state is ActivitiesErrorState) {
+            AlertController.showMessage(context: context, title: 'Ошибка', content: state.error);
+          }
         },
         builder: (_, state) {
+          if (state is ActivitiesErrorState) {
+            return RefreshIndicator(
+              color: AppColors.blueGradient1,
+              onRefresh: () async => bloc.getActivities(),
+              child: ListView(
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                padding: const EdgeInsets.all(AppConstraints.padding),
+                children: const <Widget>[Text('Список пуст', textAlign: TextAlign.center)],
+              ),
+            );
+          }
           return CustomShimmer(
             isLoading: state is ActivitiesLoadingState,
             child: RefreshIndicator(

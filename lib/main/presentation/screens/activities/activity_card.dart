@@ -12,7 +12,6 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO set placeholder for background image;
     return CupertinoButton(
       padding: EdgeInsets.zero,
       pressedOpacity: 0.7,

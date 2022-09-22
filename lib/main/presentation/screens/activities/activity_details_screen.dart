@@ -29,9 +29,13 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
         title: Image.asset(
-          'assets/shymbulak_logo.png',
+          AppAssets.shymbulakLogo,
           height: 48.0,
           fit: BoxFit.cover,
+          errorBuilder: (_, obj, trace) => const Icon(
+            CupertinoIcons.exclamationmark_circle_fill,
+            color: AppColors.blueGradient1,
+          ),
         ),
         centerTitle: true,
         leading: AppIconButton(
@@ -52,6 +56,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                     fit: BoxFit.cover,
                     width: double.maxFinite,
                     height: MediaQuery.of(context).size.width * 0.7,
+                    placeholder: (_, str) => const CupertinoActivityIndicator(color: AppColors.blueGradient1),
                     errorWidget: (_, obj, trace) => const Icon(CupertinoIcons.exclamationmark_circle_fill),
                   ),
                   SizedBox(

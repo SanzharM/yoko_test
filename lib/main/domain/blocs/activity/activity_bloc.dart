@@ -17,15 +17,15 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
 
   void _getActivities(GetActivitiesEvent event, Emitter<ActivityState> emit) async {
     emit(ActivitiesLoadingState());
-    // try {
-    final response = await _provider.getActivities();
-    if (response.isSuccess) {
-      return emit(ActivitiesLoadedState(response.activities!));
+    try {
+      final response = await _provider.getActivities();
+      if (response.isSuccess) {
+        return emit(ActivitiesLoadedState(response.activities!));
+      }
+      emit(ActivitiesErrorState(response.error ?? 'Что-то пошло не так'));
+    } catch (e) {
+      debugPrint('ActivityBloc error: $e');
+      emit(ActivitiesErrorState('Что-то пошло не так'));
     }
-    emit(ActivitiesErrorState(response.error ?? 'Что-то пошло не так'));
-    // } catch (e) {
-    //   debugPrint('ActivityBloc error: $e');
-    //   emit(ActivitiesErrorState('Что-то пошло не так'));
-    // }
   }
 }
