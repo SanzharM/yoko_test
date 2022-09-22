@@ -30,6 +30,8 @@ class ActivityCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 height: double.maxFinite,
                 width: double.maxFinite,
+                placeholder: (_, str) => const CupertinoActivityIndicator(color: AppColors.blueGradient1),
+                errorWidget: (_, obj, trace) => const SizedBox(),
               ),
               Container(
                 height: double.maxFinite,

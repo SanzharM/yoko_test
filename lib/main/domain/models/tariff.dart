@@ -63,7 +63,7 @@ class Tariff {
   factory Tariff.fromMap(Map<String, dynamic> map) {
     return Tariff(
       id: map['id']?.toInt(),
-      name: map['name'],
+      name: map['nameRu'] ?? map['nameKk'] ?? map['nameEn'],
       enabled: map['enabled'] ?? false,
       price: map['priceInfo']['price']?.toDouble(),
       priceEnabled: map['priceInfo']['enabled'] ?? false,

@@ -101,7 +101,7 @@ class _AppTextFieldState extends State<AppTextField> {
               errorBorder: InputBorder.none,
               prefix: widget.prefix,
               prefixIcon: widget.prefixIcon,
-              fillColor: AppColors.secondary,
+              fillColor: AppColors.grey,
             ),
           ),
         ),

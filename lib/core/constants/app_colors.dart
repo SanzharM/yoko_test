@@ -6,20 +6,15 @@ class AppColors {
   static const black = Color(0xff000000);
   static const transparent = Color(0x00000000);
 
-  // App Palette
-  static const primary = Color.fromARGB(255, 78, 155, 255);
-  static const secondary = Color.fromARGB(255, 22, 0, 53);
-  static const cardBackground = Color.fromARGB(136, 59, 144, 255);
-
-  static const darkGrey = Color.fromARGB(255, 43, 43, 62);
-  static const lightGrey = Color(0xffE5E5E5);
-  static const grey = Color(0xffB3B3C3);
-
   // Blue Gradient
   static const blueGradient1 = Color(0xff5E94E1);
   static const blueGradient2 = Color(0xff5C91DE);
   static const blueGradient3 = Color(0xff5A8FDB);
   static const blueGradient4 = Color(0xff4271B5);
+
+  // Grey
+  static const grey = Color(0xffDADADA);
+  static const greyLight = Color(0xffF9FAFC);
 
   // Gradients
   static const blueLinearGradient = LinearGradient(
@@ -36,6 +31,24 @@ class AppColors {
       AppColors.black.withOpacity(0.7),
       AppColors.transparent,
       AppColors.blueGradient1.withOpacity(0.7),
+    ],
+  );
+  static final blackShadowGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: const [0.25, 0.75, 1.0],
+    colors: [
+      AppColors.black.withOpacity(0.7),
+      AppColors.transparent,
+      AppColors.black.withOpacity(0.7),
+    ],
+  );
+  static final blueShadowGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      AppColors.blueGradient1.withOpacity(0.3),
+      AppColors.blueGradient4.withOpacity(0.3),
     ],
   );
 }

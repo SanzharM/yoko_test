@@ -16,7 +16,7 @@ class CustomShimmer extends StatelessWidget {
           ? Shimmer.fromColors(
               child: child,
               baseColor: AppColors.white,
-              highlightColor: AppColors.lightGrey,
+              highlightColor: AppColors.grey,
             )
           : child,
     );

@@ -24,6 +24,7 @@ dependencies:
 
   # Services
   intl:
+  url_launcher: 
 
   # UI
   shimmer:

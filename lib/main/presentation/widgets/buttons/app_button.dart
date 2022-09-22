@@ -30,27 +30,34 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       onPressed: onPressed,
-      color: backgroundColor ?? AppColors.white.withOpacity(0.5),
       padding: EdgeInsets.zero,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
-        child: isLoading
-            ? Center(
-                child: Padding(
-                padding: padding ?? const EdgeInsets.all(14.0),
-                child: CupertinoActivityIndicator(
-                  color: textColor ?? AppColors.white,
+      borderRadius: AppConstraints.borderRadius,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: AppConstraints.borderRadius,
+          gradient: backgroundColor == null ? const LinearGradient(colors: [AppColors.blueGradient4, AppColors.blueGradient1]) : null,
+        ),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: isLoading
+              ? Center(
+                  child: Padding(
+                  padding: padding ?? const EdgeInsets.all(14.0),
+                  child: CupertinoActivityIndicator(
+                    color: textColor ?? AppColors.white,
+                  ),
+                ))
+              : Container(
+                  width: double.maxFinite,
+                  alignment: alignment ?? Alignment.center,
+                  padding: padding ?? const EdgeInsets.all(AppConstraints.padding),
+                  child: Text(
+                    title,
+                    style: textStyle ?? Theme.of(context).textTheme.bodyLarge?.apply(color: textColor ?? AppColors.white),
+                  ),
                 ),
-              ))
-            : Container(
-                width: double.maxFinite,
-                alignment: alignment ?? Alignment.center,
-                padding: padding ?? const EdgeInsets.all(AppConstraints.padding),
-                child: Text(
-                  title,
-                  style: textStyle ?? Theme.of(context).textTheme.bodyLarge?.apply(color: textColor ?? AppColors.white),
-                ),
-              ),
+        ),
       ),
     );
   }

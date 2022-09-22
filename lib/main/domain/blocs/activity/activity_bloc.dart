@@ -7,6 +7,7 @@ part 'activity_state.dart';
 
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
   void getActivities() => add(GetActivitiesEvent());
+  void addTariff() => debugPrint('handle action in bloc');
 
   ActivityBloc() : super(ActivityInitial()) {
     on<GetActivitiesEvent>(_getActivities);

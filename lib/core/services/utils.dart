@@ -10,4 +10,9 @@ class Utils {
       return null;
     }
   }
+
+  static String formatPrice(dynamic price, {String? currency}) {
+    if (price == null) return '';
+    return '$price ${currency ?? 'KZT'}';
+  }
 }
